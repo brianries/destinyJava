@@ -1,14 +1,42 @@
 group 'destiny'
 version '1.0-SNAPSHOT'
 
-apply plugin: 'java'
+subprojects {
+    apply plugin: 'java'
+    sourceCompatibility = 1.8
 
-sourceCompatibility = 1.5
+    repositories {
+        mavenCentral()
+    }
 
-repositories {
-    mavenCentral()
+    dependencies {
+        testCompile group: 'junit', name: 'junit', version: '4.11'
+        testCompile group: 'org.jmock', name: 'jmock-junit4', version: '2+'
+    }
+
+    sourceSets {
+        main {
+            java {
+                srcDir 'java'
+            }
+        }
+        test {
+            java {
+                srcDir 'test'
+            }
+        }
+    }
 }
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+project(':Networking') {
+    dependencies {
+
+    }
 }
+
+project(':Main') {
+    dependencies {
+        compile project(':Networking')
+    }
+}
+
