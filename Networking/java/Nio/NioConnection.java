@@ -1,5 +1,6 @@
 package Nio;
 
+import java.io.IOException;
 import java.net.InetAddress;
 
 /**
@@ -8,7 +9,7 @@ import java.net.InetAddress;
 
 public interface NioConnection {
 
-    void accept(int port);
+    void listen(int port);
 
     void connect(InetAddress destination, int port);
 
